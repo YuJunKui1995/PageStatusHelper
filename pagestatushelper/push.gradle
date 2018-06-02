@@ -1,0 +1,27 @@
+apply plugin: 'com.jfrog.artifactory'
+apply plugin: 'maven-publish'
+
+def artifactVersion = '0.7.0'
+publishing {
+    publications {
+        mavenArr(MavenPublication) {
+            groupId = 'common'
+            artifactId project.name
+            version = artifactVersion
+            artifact "${project.buildDir}/outputs/aar/${project.name}-release.aar"
+        }
+    }
+    artifactory {
+        contextUrl = "http://192.168.14.152:8081/artifactory"
+        publish {
+            repository {
+                repoKey = 'release_lib'
+                username = "yujunkui"
+                password = "123456"
+            }
+            defaults {
+                publications('mavenArr')
+            }
+        }
+    }
+}
