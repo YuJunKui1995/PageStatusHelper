@@ -225,8 +225,6 @@ public class Builder {
                 textView.setText(text);
                 textView.setTextColor(textColor);
                 textView.setTextSize(textSize);
-                int dp10 = ViewUtils.dip2px(context, 10);
-                textView.setPadding(dp10 * 2, dp10, dp10 * 2, dp10);
                 view = textView;
             }
 

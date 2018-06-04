@@ -5,6 +5,7 @@ import android.support.constraint.ConstraintSet;
 import android.view.View;
 
 import com.smartcity.commonbase.widget.pagestatus.LayoutParams;
+import com.smartcity.commonbase.widget.pagestatus.ViewUtils;
 
 /**
  * Author: YuJunKui
@@ -28,6 +29,9 @@ public class ConstraintLayoutViewStatusImp extends ViewGroupViewStatusImp {
             bindView.setVisibility(View.INVISIBLE);
             addView.setVisibility(View.VISIBLE);
         }
+
+        int dp10 = ViewUtils.dip2px(bindView.getContext(), 10);
+        addView.setPadding(dp10 * 2, dp10, dp10 * 2, dp10);
 
 
         addView.setId(View.generateViewId());

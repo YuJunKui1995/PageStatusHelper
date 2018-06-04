@@ -1,7 +1,7 @@
 apply plugin: 'com.jfrog.artifactory'
 apply plugin: 'maven-publish'
 
-def artifactVersion = '0.7.2'
+def artifactVersion = '0.7.3'
 publishing {
     publications {
         mavenArr(MavenPublication) {
