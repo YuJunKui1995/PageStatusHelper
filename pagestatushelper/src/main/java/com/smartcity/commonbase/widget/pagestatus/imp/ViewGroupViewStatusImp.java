@@ -1,10 +1,8 @@
 package com.smartcity.commonbase.widget.pagestatus.imp;
 
-import android.support.constraint.ConstraintLayout;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.smartcity.commonbase.widget.ViewUtils;
 import com.smartcity.commonbase.widget.pagestatus.LayoutParams;
 import com.smartcity.commonbase.widget.pagestatus.ViewUtils;
 
