@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 
 import com.smartcity.commonbase.widget.ViewUtils;
 import com.smartcity.commonbase.widget.pagestatus.LayoutParams;
+import com.smartcity.commonbase.widget.pagestatus.ViewUtils;
 
 /**
  * Author: YuJunKui
