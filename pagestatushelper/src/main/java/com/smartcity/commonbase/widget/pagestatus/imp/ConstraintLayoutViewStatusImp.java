@@ -44,9 +44,8 @@ public class ConstraintLayoutViewStatusImp extends ViewGroupViewStatusImp {
         //比如设置了leftMargin和rightMargin  没有设置leftToRight或者leftToLeft   rightToRight或者rightToLeft
         //目前只支持leftMargin==rightToRight的显示
         //这里的方案还要更换
-        if (layoutParams.leftMargin != 0 &&
-                layoutParams.leftToLeft == -1 && layoutParams.leftToRight == -1
-                && layoutParams.rightMargin != 0 &&
+        if (layoutParams.leftMargin == layoutParams.rightMargin &&
+                layoutParams.leftToLeft == -1 && layoutParams.leftToRight == -1 &&
                 layoutParams.rightToRight == -1 && layoutParams.rightToLeft == -1
                 ) {
             layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
@@ -54,9 +53,8 @@ public class ConstraintLayoutViewStatusImp extends ViewGroupViewStatusImp {
             layoutParams.leftMargin = 0;
             layoutParams.rightToRight = 0;
         }
-        if (layoutParams.topMargin != 0 &&
-                layoutParams.topToTop == -1 && layoutParams.topToBottom == -1
-                && layoutParams.bottomMargin != 0 &&
+        if (layoutParams.topMargin == layoutParams.bottomMargin &&
+                layoutParams.topToTop == -1 && layoutParams.topToBottom == -1 &&
                 layoutParams.bottomToBottom == -1 && layoutParams.bottomToTop == -1
                 ) {
             layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
