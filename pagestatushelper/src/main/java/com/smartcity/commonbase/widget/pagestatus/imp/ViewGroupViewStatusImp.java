@@ -1,10 +1,11 @@
 package com.smartcity.commonbase.widget.pagestatus.imp;
 
+import android.support.constraint.ConstraintLayout;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.smartcity.commonbase.widget.ViewUtils;
 import com.smartcity.commonbase.widget.pagestatus.LayoutParams;
-import com.smartcity.commonbase.widget.pagestatus.ViewUtils;
 
 /**
  * Author: YuJunKui
@@ -39,16 +40,11 @@ public class ViewGroupViewStatusImp implements ViewStatusInterface {
 
                 int left = (parentWidth - width) / 2;
                 int top = (parentHeight - height) / 2;
-                layoutParams.leftMargin = left;
-                layoutParams.rightMargin = left;
-                layoutParams.topMargin = top;
-                layoutParams.bottomMargin = top;
+                addView.setPadding(left, top, left, top);
 
             } else {
-                layoutParams.leftMargin = params.leftMargin;
-                layoutParams.rightMargin = params.rightMargin;
-                layoutParams.topMargin = params.topMargin;
-                layoutParams.bottomMargin = params.bottomMargin;
+
+                addView.setPadding(params.paddingLeft, params.paddingTop, params.paddingRight, params.paddingBottom);
             }
 
             parent.addView(addView, layoutParams);
