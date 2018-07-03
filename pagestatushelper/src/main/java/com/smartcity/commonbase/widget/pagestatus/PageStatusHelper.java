@@ -54,28 +54,32 @@ public class PageStatusHelper {
         controller = new ViewStatusController();
     }
 
-    public void setLayoutParams(LayoutParams params) {
+    public PageStatusHelper setLayoutParams(LayoutParams params) {
         this.params = params;
+        return this;
     }
 
 
-    public void bindView(View bindView) {
+    public PageStatusHelper bindView(View bindView) {
 
         if (this.bindView != null) {
-            return;// song 没抛运行时异常
+            return this;// song 没抛运行时异常
         }
 
         this.bindView = bindView;
         this.bindViewBgColor = ColorUtils.obtainBgColor(bindView);
+
+        return this;
     }
 
+    @Deprecated
     public void bindActivity(Activity bindActivity) {
         this.bindView = bindActivity.getWindow().getDecorView();
     }
 
-    public void setBuilder(Builder builder) {
+    public PageStatusHelper setBuilder(Builder builder) {
         this.builder = builder;
-
+        return this;
     }
 
     public Builder getBuilder() {
@@ -87,11 +91,11 @@ public class PageStatusHelper {
      *
      * @param pageStatusValue
      */
-    public void refreshPageStatus(@PageStatusValue final int pageStatusValue) {
+    public PageStatusHelper refreshPageStatus(@PageStatusValue final int pageStatusValue) {
 
         //状态一样不做处理
         if (currentPageStatusValue == pageStatusValue) {
-            return;
+            return this;
         }
 
         currentPageStatusValue = pageStatusValue;
@@ -116,7 +120,7 @@ public class PageStatusHelper {
             refreshStatus(pageStatusValue);
         }
 
-
+        return this;
     }
 
     private void refreshStatus(@PageStatusValue final int pageStatusValue) {
@@ -174,10 +178,12 @@ public class PageStatusHelper {
     }
 
 
-    public void setOnNoLoginClickListener(OnNoLoginClickListener onNoLoginClickListener) {
+    public PageStatusHelper setOnNoLoginClickListener(OnNoLoginClickListener onNoLoginClickListener) {
         this.onNoLoginClickListener = onNoLoginClickListener;
+        return this;
     }
 
+    @Deprecated
     public void showContent() {
         refreshPageStatus(CONTENT);
     }
