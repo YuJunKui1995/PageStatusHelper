@@ -26,6 +26,7 @@ public class PageStatusHelper {
     private ViewStatusController controller;
     private OnErrorClickListener onErrorClickListener;
     private OnNoLoginClickListener onNoLoginClickListener;
+    private OnEmptyClickListener onEmptyClickListener;
 
     private LayoutParams params;
     public static final byte ERROR = 0, NO_LOGIN = 1, LOADING = 2, NET_WORK = 3, EMPTY = 4, CONTENT = 5;
@@ -169,6 +170,8 @@ public class PageStatusHelper {
                     onErrorClickListener.onErrorClick(v);
                 } else if (pageStatusValue == NO_LOGIN && onNoLoginClickListener != null) {
                     onNoLoginClickListener.OnNoLoginClick(v);
+                }else if(pageStatusValue == EMPTY && onEmptyClickListener != null){
+                    onEmptyClickListener.onEmptyClick(v);
                 }
 
             }
@@ -195,6 +198,10 @@ public class PageStatusHelper {
 
     public void setOnErrorClickListener(OnErrorClickListener onErrorClickListener) {
         this.onErrorClickListener = onErrorClickListener;
+    }
+
+    public void setOnEmptyClickListener(OnEmptyClickListener onEmptyClickListener){
+        this.onEmptyClickListener = onEmptyClickListener;
     }
 
 }
