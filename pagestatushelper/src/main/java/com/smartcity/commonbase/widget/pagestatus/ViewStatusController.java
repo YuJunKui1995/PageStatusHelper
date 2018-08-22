@@ -1,6 +1,7 @@
 package com.smartcity.commonbase.widget.pagestatus;
 
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -52,7 +53,10 @@ public class ViewStatusController {
         } else if (parent instanceof ConstraintLayout){
 
             viewStatusInterface = new ConstraintLayoutViewStatusImp();
-        }else{
+        } else if (parent instanceof ViewPager) {
+
+            throw new RuntimeException("不支持直属父布局为viewpager使用PageStatusHelper，解决方案暂为在 binview外套一层布局");
+        } else {
 //            throw new RuntimeException("不支持" + bindView.getParent().getClass().getSimpleName() + "布局使用PageStatusHelper，联系维护者");
             viewStatusInterface = new ViewGroupViewStatusImp();
         }

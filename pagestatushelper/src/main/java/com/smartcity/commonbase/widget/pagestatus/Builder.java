@@ -152,6 +152,32 @@ public class Builder {
     }
 
 
+    public Builder setNetworkView(View networkView) {
+        this.networkView = networkView;
+        return this;
+    }
+
+    public Builder setNoLoginView(View noLoginView) {
+        this.noLoginView = noLoginView;
+        return this;
+    }
+
+    public Builder setErrorView(View errorView) {
+        this.errorView = errorView;
+        return this;
+    }
+
+    public Builder setLoadingView(View loadingView) {
+        this.loadingView = loadingView;
+        return this;
+    }
+
+    public Builder setEmptyView(View emptyView) {
+        this.emptyView = emptyView;
+        return this;
+    }
+
+
     public View buildErrorView(boolean isRetry) {
 
         View view = getView(errorView, errorLayout, errorImage, errorText);
