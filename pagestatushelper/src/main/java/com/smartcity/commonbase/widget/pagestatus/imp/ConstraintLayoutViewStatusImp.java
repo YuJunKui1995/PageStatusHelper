@@ -28,6 +28,7 @@ public class ConstraintLayoutViewStatusImp extends ViewGroupViewStatusImp {
             //已经添加过了
             bindView.setVisibility(View.INVISIBLE);
             addView.setVisibility(View.VISIBLE);
+            return;
         }
 
         int dp10 = ViewUtils.dip2px(bindView.getContext(), 10);
