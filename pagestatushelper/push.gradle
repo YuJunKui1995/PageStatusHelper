@@ -1,27 +1,20 @@
-apply plugin: 'com.jfrog.artifactory'
-apply plugin: 'maven-publish'
 
-def artifactVersion = '0.7.5'
-publishing {
-    publications {
-        mavenArr(MavenPublication) {
-            groupId = 'common'
-            artifactId project.name
-            version = artifactVersion
-            artifact "${project.buildDir}/outputs/aar/${project.name}-release.aar"
-        }
-    }
-    artifactory {
-        contextUrl = "http://192.168.14.152:8081/artifactory"
-        publish {
-            repository {
-                repoKey = 'release_lib'
-                username = "yujunkui"
-                password = "123456"
-            }
-            defaults {
-                publications('mavenArr')
-            }
-        }
-    }
+apply plugin: 'com.novoda.bintray-release'
+
+def siteUrl = 'https://github.com/YuJunKui1995/PageStatusHelper'
+
+publish{
+    repoName = 'HouShanRen'
+    userOrg = 'yujkyujk'
+    groupId = 'firemonkey'
+    artifactId = 'pagestatushelper'
+    publishVersion = '0.7.6'
+    desc = 'Simple and elegant management of page status 。'
+    website = siteUrl
 }
+tasks.withType(Javadoc) {//防止编码问题
+    options.addStringOption('Xdoclint:none', '-quiet')
+    options.addStringOption('encoding', 'UTF-8')
+    options.addStringOption('charSet', 'UTF-8')
+}
+

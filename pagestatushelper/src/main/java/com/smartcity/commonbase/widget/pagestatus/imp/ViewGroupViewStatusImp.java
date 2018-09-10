@@ -22,7 +22,7 @@ public class ViewGroupViewStatusImp implements ViewStatusInterface {
         if (parent.indexOfChild(addView) == -1) {
 
             ViewGroup.MarginLayoutParams layoutParams = new ViewGroup.MarginLayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
             if (params.centerInParent == true) {
 

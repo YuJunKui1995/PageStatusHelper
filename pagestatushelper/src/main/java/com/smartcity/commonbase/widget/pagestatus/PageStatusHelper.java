@@ -63,6 +63,7 @@ public class PageStatusHelper {
 
     public PageStatusHelper bindView(View bindView) {
 
+        checkBindView();
         if (this.bindView != null) {
             return this;// song 没抛运行时异常
         }
@@ -71,6 +72,12 @@ public class PageStatusHelper {
         this.bindViewBgColor = ColorUtils.obtainBgColor(bindView);
 
         return this;
+    }
+
+    //检测
+    private void checkBindView() {
+
+
     }
 
     @Deprecated

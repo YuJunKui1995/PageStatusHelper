@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.smartcity.commonbase.widget.pagestatus.Builder;
 import com.smartcity.commonbase.widget.pagestatus.OnErrorClickListener;
@@ -24,13 +25,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Builder builder=new Builder(this);
+        Builder builder = new Builder(this);
 //        builder.setTextColor(Color.BLACK);
 //        builder.setErrorText("出错误啦");
 //        builder.setEmptyImage(R.drawable.ic_launcher_background);
 //        builder.setLoadingLayout(R.layout.activity_main);
 
-        PageStatusHelper helper = new PageStatusHelper(this,builder);
+        TextView textView = new TextView(this);
+        textView.setText("我是new出来的textview");
+        textView.setTextColor(Color.RED);
+        builder.setLoadingView(textView);
+
+        PageStatusHelper helper = new PageStatusHelper(this, builder);
 
         helper.bindView(findViewById(R.id.content))
                 .refreshPageStatus(PageStatusHelper.LOADING)
