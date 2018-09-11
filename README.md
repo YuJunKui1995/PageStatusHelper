@@ -12,7 +12,7 @@
 
 ### 2、版本依赖
 ```Groovy
-api "com.github.yjfnypeu.Router:router-api:$LatestVersion"
+api 'firemonkey:pagestatushelper:0.7.6'
 ```
 
 ### 、使用
