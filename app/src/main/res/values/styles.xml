@@ -8,4 +8,18 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="btn_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/btn_horizontal_margin</item>
+        <item name="android:layout_marginEnd">@dimen/btn_horizontal_margin</item>
+        <item name="android:layout_marginTop">@dimen/btn_margin_top</item>
+    </style>
+
+    <style name="btn_top_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/btn_top_horizontal_margin</item>
+    </style>
+
 </resources>

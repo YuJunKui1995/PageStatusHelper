@@ -23,8 +23,8 @@ public class ColorUtils {
     public static String reserveColor(String originalColor) {
         StringBuilder sb = new StringBuilder().append("#");
 
-        if (!originalColor.startsWith("#")){
-            originalColor="#"+originalColor;
+        if (!originalColor.startsWith("#")) {
+            originalColor = "#" + originalColor;
         }
         //==9则 带了透明值  消除透明值
         int start = originalColor.length() == 9 ? 3 : 1;
@@ -44,6 +44,7 @@ public class ColorUtils {
      */
     public static String obtainBgColor(View v) {
 
+        v = (View) v.getParent();
         try {
             Drawable background = v.getBackground();
             if (background == null) {
