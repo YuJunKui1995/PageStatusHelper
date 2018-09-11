@@ -1,15 +1,14 @@
-
 apply plugin: 'com.novoda.bintray-release'
 
 def siteUrl = 'https://github.com/YuJunKui1995/PageStatusHelper'
 
 publish{
     repoName = 'HouShanRen'
-    userOrg = 'yujkyujk'
+    userOrg = "yujkyujk"
     groupId = 'firemonkey'
     artifactId = 'pagestatushelper'
     publishVersion = '0.7.6'
-    desc = 'Simple and elegant management of page status 。'
+    desc = 'Simple and elegant management of page status .'
     website = siteUrl
 }
 tasks.withType(Javadoc) {//防止编码问题
