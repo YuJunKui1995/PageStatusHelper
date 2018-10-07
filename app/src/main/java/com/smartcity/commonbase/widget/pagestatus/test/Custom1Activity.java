@@ -5,14 +5,15 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.smartcity.commonbase.widget.pagestatus.Builder;
 import com.smartcity.commonbase.widget.pagestatus.PageStatusHelper;
 
 /**
  * Author: YuJunKui
- * Time:2018/9/11 17:31
+ * Time:2018/10/7 15:59
  * Tips:
  */
-public class SimpleActivity extends AppCompatActivity {
+public class Custom1Activity extends AppCompatActivity {
 
     private PageStatusHelper statusHelper;
 
@@ -27,22 +28,20 @@ public class SimpleActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(false);
-        getSupportActionBar().setTitle("简单使用");
+        getSupportActionBar().setTitle("定制一");
         setContentView(R.layout.activity_simple);
 
         contentView = findViewById(R.id.tv_content);
 
-        statusHelper = new PageStatusHelper(this);
+        statusHelper = new PageStatusHelper(this
+                , new Builder(this)
+                .setErrorImage(R.drawable.ic_loading_error)
+                .setLoadingView(new LoadingGifView(this))
+                .setEmptyImage(R.drawable.ic_loading_empty)
+                .setNetworkImage(R.drawable.ic_loading_no_net)
+                .setLoadingImage(R.drawable.ic_loading_login)
+        );
         statusHelper.bindView(contentView);
-
-        statusHelper.setOnErrorClickListener(v -> {
-            // 重新开始你的请求
-        });
-
-        statusHelper.setOnNoLoginClickListener(v -> {
-            //打开登录页面
-            //建议写个静态方法 构造一系列通用视图 以及 打开登录页面
-        });
 
 
         statusHelper.refreshPageStatus(PageStatusHelper.LOADING);

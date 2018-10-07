@@ -19,6 +19,10 @@
 
         <activity android:name=".SimpleActivity" />
 
+        <activity android:name=".SinglePageMoreStateActivity" />
+
+        <activity android:name=".Custom1Activity" />
+
     </application>
 
 </manifest>

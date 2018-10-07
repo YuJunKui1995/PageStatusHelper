@@ -44,7 +44,6 @@ public class ColorUtils {
      */
     public static String obtainBgColor(View v) {
 
-        v = (View) v.getParent();
         try {
             Drawable background = v.getBackground();
             if (background == null) {

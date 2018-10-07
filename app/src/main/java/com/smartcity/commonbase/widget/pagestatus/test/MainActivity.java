@@ -27,6 +27,14 @@ public class MainActivity extends AppCompatActivity {
 
                 startActivity(new Intent(this, SimpleActivity.class));
                 break;
+            case R.id.btn_simple2:
+
+                startActivity(new Intent(this, SinglePageMoreStateActivity.class));
+                break;
+            case R.id.btn_simple3:
+
+                startActivity(new Intent(this, Custom1Activity.class));
+                break;
         }
 
     }
