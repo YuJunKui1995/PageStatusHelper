@@ -10,6 +10,24 @@
 
 -杜绝数据未加载出来，出现点击错误显示异常
 
+### 少废话先看效果
+
+**防止页面数据未加载出来点击错误 或者数据不雅**
+
+![demo1](https://github.com/YuJunKui1995/PageStatusHelper/blob/master/gif/simple1.gif)
+
+
+**绑定部分区域加载**
+
+![demo2](https://github.com/YuJunKui1995/PageStatusHelper/blob/master/gif/simple2.gif)
+
+
+**单页面多个接口**
+
+![demo3](https://github.com/YuJunKui1995/PageStatusHelper/blob/master/gif/simple3.gif)
+![demo4](https://github.com/YuJunKui1995/PageStatusHelper/blob/master/gif/simple4.gif)
+
+
 ### 2、版本依赖
 ```Groovy
 api 'firemonkey:pagestatushelper:0.7.6'
