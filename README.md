@@ -59,10 +59,12 @@ statusHelper = new PageStatusHelper(Context context
 ```
 
 ### 4、目前已知的问题
-**1、bindView的父布局为ViewPage下异常
+
+1、bindView的父布局为ViewPage下异常
 
 2、在Fragment使用时bindView是根布局，而这个Fragment使用的地方需要show hide Fragment(常见为主页tab)
-以上两个问题都可以通过在bindView包裹一层父布局解决**
+以上两个问题都可以通过在bindView包裹一层父布局解决
+
 
 ## License MIT
 
