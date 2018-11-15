@@ -38,7 +38,7 @@ api 'firemonkey:pagestatushelper:0.7.6'
 ```java
 statusHelper = new PageStatusHelper(Context context)
 //需要把加载状态绑定到那个view
-statusHelper.bindView(contentView);
+statusHelper.bindView(View contentView);
 statusHelper.refreshPageStatus(@PageStatusValue int pageStatusValue)
 
 refreshPageStatus方法有如下类型
