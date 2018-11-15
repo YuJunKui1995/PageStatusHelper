@@ -34,7 +34,7 @@ api 'firemonkey:pagestatushelper:0.7.6'
 
 ### 3、使用
 
-1、简单使用 三行代码(简单模式下所有的状态view皆为TextView)
+**1、简单使用 三行代码(简单模式下所有的状态view皆为TextView)**
 ```java
 statusHelper = new PageStatusHelper(Context context)
 //需要把加载状态绑定到那个view
@@ -45,7 +45,7 @@ refreshPageStatus方法有如下类型
 ERROR、 NO_LOGIN =、 LOADING、 NET_WORK(网络异常)、 EMPTY 、 CONTENT(正常内容)
 ```
 
-2、定制使用使用
+**2、定制使用使用**
 ```java
 //可通过Builder对象对各个状态进行定制,text image layout view 等等都可以
 statusHelper = new PageStatusHelper(Context context
@@ -59,9 +59,10 @@ statusHelper = new PageStatusHelper(Context context
 ```
 
 ### 4、目前已知的问题
-1、bindView的父布局为ViewPage下异常
+**1、bindView的父布局为ViewPage下异常
+
 2、在Fragment使用时bindView是根布局，而这个Fragment使用的地方需要show hide Fragment(常见为主页tab)
-以上两个问题都可以通过在bindView包裹一层父布局解决
+以上两个问题都可以通过在bindView包裹一层父布局解决**
 
 ## License MIT
 
