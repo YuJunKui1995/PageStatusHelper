@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar_topic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:elevation="0dp">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout_topic"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:titleEnabled="false">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?attr/actionBarSize"
+                android:paddingBottom="8dp"
+                app:layout_scrollFlags="scroll">
+
+                <TextView
+                    android:id="@+id/tv_simple_name"
+                    android:layout_width="53dp"
+                    android:layout_height="53dp"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:textSize="23sp"
+                    android:text="刚"
+                    android:textColor="#FF3A83EF"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="刚" />
+
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="0dp"
+                    tools:visibility="gone"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_simple_name"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_simple_name"
+                    app:layout_constraintStart_toStartOf="@+id/tv_simple_name"
+                    app:layout_constraintTop_toTopOf="@+id/tv_simple_name" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toEndOf="@+id/tv_simple_name"
+                    app:layout_constraintTop_toTopOf="@+id/tv_simple_name"
+                    android:text="蔡小葵" />
+
+                <TextView
+                    android:id="@+id/tv_tip2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textColor="#ffffff"
+                    app:layout_constraintStart_toStartOf="@+id/textView4"
+                    app:layout_constraintTop_toBottomOf="@+id/textView4"
+                    android:text="13000000000" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:gravity="center"
+                    android:minWidth="56dp"
+                    android:minHeight="19dp"
+                    android:text="TextView"
+                    android:textColor="#ffffff"
+                    android:textSize="10sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView4"
+                    app:layout_constraintStart_toEndOf="@+id/textView4"
+                    app:layout_constraintTop_toTopOf="@+id/textView4"
+                    tools:text="黄金会员" />
+
+                <TextView
+                    android:id="@+id/tv_add_member"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="7dp"
+                    android:paddingStart="11dp"
+                    android:paddingTop="3dp"
+                    android:paddingEnd="11dp"
+                    android:paddingBottom="3dp"
+                    android:text="登记会员"
+                    android:textColor="#FF3A83EF"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+                    app:layout_constraintEnd_toStartOf="@id/ll_make_appointment"
+                    app:layout_constraintTop_toTopOf="@+id/imageView6" />
+
+                <LinearLayout
+                    android:id="@+id/ll_make_appointment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:onClick="onAppointmentClick"
+                    android:orientation="horizontal"
+                    android:paddingStart="11dp"
+                    android:paddingTop="3dp"
+                    android:paddingEnd="11dp"
+                    android:paddingBottom="3dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:gravity="center"
+                    app:layout_constraintTop_toTopOf="@+id/imageView6">
+
+                    <ImageView
+                        android:layout_width="11dp"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_height="11dp" />
+
+                    <TextView
+                        android:id="@+id/tv_make_appointment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="预约"
+                        android:textColor="#FF3A83EF"
+                        android:textSize="13sp"
+                        />
+                </LinearLayout>
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar_topic"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/colorPrimary"
+                app:layout_collapseMode="pin">
+
+                <LinearLayout
+                    android:id="@+id/ll_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="13dp"
+                        android:layout_height="22dp"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="个人资料"
+                        android:textColor="#fff"
+                        android:textSize="21sp"
+                        android:textStyle="" />
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/colorPrimary"
+            android:textSize="13sp"
+            app:layout_scrollFlags="scroll"
+            app:tabIndicatorColor="#FFFFFFFF"
+            app:tabIndicatorHeight="3dp"
+            app:tabMinWidth="120dp"
+            app:tabSelectedTextColor="#ffffff"
+            app:tabTextColor="#B3ffffff" />
+
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/vp_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:background="#fff"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </RelativeLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+</android.support.design.widget.CoordinatorLayout>

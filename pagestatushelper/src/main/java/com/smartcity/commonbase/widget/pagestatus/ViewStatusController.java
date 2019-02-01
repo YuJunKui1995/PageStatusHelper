@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 
 import com.smartcity.commonbase.widget.pagestatus.imp.ConstraintLayoutViewStatusImp;
 import com.smartcity.commonbase.widget.pagestatus.imp.FrameLayoutViewStatusImp;
@@ -50,12 +51,12 @@ public class ViewStatusController {
         } else if (parent instanceof FrameLayout) {
 
             viewStatusInterface = new FrameLayoutViewStatusImp();
-        } else if (parent instanceof ConstraintLayout){
+        } else if (parent instanceof ConstraintLayout) {
 
             viewStatusInterface = new ConstraintLayoutViewStatusImp();
-        } else if (parent instanceof ViewPager) {
+        } else if (parent instanceof ViewPager||parent instanceof ScrollView) {
 
-            throw new RuntimeException("不支持直属父布局为viewpager使用PageStatusHelper，解决方案暂为在 binview外套一层布局");
+            throw new RuntimeException("不支持直属父布局为"+parent.getClass().getSimpleName()+"使用PageStatusHelper，解决方案暂为在 binview外套一层布局");
         } else {
 //            throw new RuntimeException("不支持" + bindView.getParent().getClass().getSimpleName() + "布局使用PageStatusHelper，联系维护者");
             viewStatusInterface = new ViewGroupViewStatusImp();

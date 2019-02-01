@@ -30,7 +30,7 @@ public class SimpleActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("简单使用");
         setContentView(R.layout.activity_simple);
 
-        contentView = findViewById(R.id.tv_content);
+        contentView = findViewById(R.id.rv_content);
 
         statusHelper = new PageStatusHelper(this);
         statusHelper.bindView(contentView);

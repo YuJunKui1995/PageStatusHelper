@@ -22,6 +22,8 @@
         <activity android:name=".SinglePageMoreStateActivity" />
 
         <activity android:name=".Custom1Activity" />
+        
+        <activity android:name=".CoordinatorLayoutActivity" />
 
     </application>
 

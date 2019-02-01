@@ -36,6 +36,8 @@ public class ViewGroupViewStatusImp implements ViewStatusInterface {
                 int parentWidth = bindViewMetrics[0];
                 int parentHeight = bindViewMetrics[1];
 
+                ViewUtils.getBindViewMetrics(bindView);
+
 
                 int left = (parentWidth - width) / 2;
                 int top = (parentHeight - height) / 2;

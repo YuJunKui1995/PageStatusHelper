@@ -48,14 +48,14 @@ public class ColorUtils {
             Drawable background = v.getBackground();
             if (background == null) {
                 return obtainBgColor((View) v.getParent());
-            } else {
+            } else if (background instanceof ColorDrawable){
                 ColorDrawable colorDrawable = (ColorDrawable) background;
                 int color = colorDrawable.getColor();
                 return intColorConvert16Color(color);
             }
         } catch (Exception e) {
-            return null;
         }
+        return null;
     }
 
 

@@ -35,4 +35,10 @@
         style="@style/btn_style"
         android:text="定制使用3" />
 
+    <Button
+        android:onClick="onClick"
+        android:id="@+id/btn_simple6"
+        style="@style/btn_style"
+        android:text="CoordinatorLayout使用" />
+
 </LinearLayout>

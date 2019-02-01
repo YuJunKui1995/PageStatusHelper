@@ -31,7 +31,7 @@ public class Custom1Activity extends AppCompatActivity {
         getSupportActionBar().setTitle("定制一");
         setContentView(R.layout.activity_simple);
 
-        contentView = findViewById(R.id.tv_content);
+        contentView = findViewById(R.id.rv_content);
 
         statusHelper = new PageStatusHelper(this
                 , new Builder(this)

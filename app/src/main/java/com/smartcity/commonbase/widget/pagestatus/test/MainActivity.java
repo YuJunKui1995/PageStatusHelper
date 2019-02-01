@@ -35,6 +35,11 @@ public class MainActivity extends AppCompatActivity {
 
                 startActivity(new Intent(this, Custom1Activity.class));
                 break;
+
+            case R.id.btn_simple6:
+
+                startActivity(new Intent(this, CoordinatorLayoutActivity.class));
+                break;
         }
 
     }
