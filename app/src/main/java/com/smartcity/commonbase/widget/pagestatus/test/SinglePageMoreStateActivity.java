@@ -29,6 +29,7 @@ public class SinglePageMoreStateActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("一个页面存在多个接口");
         setContentView(R.layout.activity_single_page_more_state);
 
+        //模拟的第一个列表
         TextView tvList1 = findViewById(R.id.tv_list1);
 
         PageStatusHelper list1StatusHelper = new PageStatusHelper(this);
@@ -42,19 +43,23 @@ public class SinglePageMoreStateActivity extends AppCompatActivity {
         PageStatusHelper list2StatusHelper = new PageStatusHelper(this);
         list2StatusHelper.bindView(tvList2);
         list2StatusHelper.setOnErrorClickListener(v -> {
-
+            //you load again
+            loadList2(tvList2, list2StatusHelper);
         });
 
         //加载中
         list2StatusHelper.refreshPageStatus(PageStatusHelper.LOADING);
+        loadList2(tvList2, list2StatusHelper);
 
 
+    }
+
+    private void loadList2(TextView tvList2, PageStatusHelper list2StatusHelper) {
         //模拟第二个列表加载失败
         tvList2.postDelayed(new Runnable() {
             @Override
             public void run() {
                 list2StatusHelper.refreshPageStatus(PageStatusHelper.ERROR);
-                tvList2.postDelayed(this,2500);
             }
         }, 2500);
     }

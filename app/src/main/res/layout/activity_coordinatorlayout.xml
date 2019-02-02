@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -35,9 +34,9 @@
                     android:layout_marginStart="14dp"
                     android:layout_marginTop="20dp"
                     android:gravity="center"
-                    android:textSize="23sp"
                     android:text="刚"
                     android:textColor="#FF3A83EF"
+                    android:textSize="23sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -47,33 +46,33 @@
                 <ImageView
                     android:id="@+id/imageView6"
                     android:layout_width="0dp"
-                    tools:visibility="gone"
                     android:layout_height="0dp"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_simple_name"
                     app:layout_constraintEnd_toEndOf="@+id/tv_simple_name"
                     app:layout_constraintStart_toStartOf="@+id/tv_simple_name"
-                    app:layout_constraintTop_toTopOf="@+id/tv_simple_name" />
+                    app:layout_constraintTop_toTopOf="@+id/tv_simple_name"
+                    tools:visibility="gone" />
 
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    android:text="蔡小葵"
                     android:textColor="#ffffff"
                     android:textSize="18sp"
                     app:layout_constraintStart_toEndOf="@+id/tv_simple_name"
-                    app:layout_constraintTop_toTopOf="@+id/tv_simple_name"
-                    android:text="蔡小葵" />
+                    app:layout_constraintTop_toTopOf="@+id/tv_simple_name" />
 
                 <TextView
                     android:id="@+id/tv_tip2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:text="13000000000"
                     android:textColor="#ffffff"
                     app:layout_constraintStart_toStartOf="@+id/textView4"
-                    app:layout_constraintTop_toBottomOf="@+id/textView4"
-                    android:text="13000000000" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
                 <TextView
                     android:id="@+id/textView7"
@@ -113,6 +112,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="15dp"
+                    android:gravity="center"
                     android:onClick="onAppointmentClick"
                     android:orientation="horizontal"
                     android:paddingStart="11dp"
@@ -121,14 +121,13 @@
                     android:paddingBottom="3dp"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView6"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:gravity="center"
                     app:layout_constraintTop_toTopOf="@+id/imageView6">
 
                     <ImageView
                         android:layout_width="11dp"
+                        android:layout_height="11dp"
                         android:layout_marginStart="2dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_height="11dp" />
+                        android:layout_marginEnd="5dp" />
 
                     <TextView
                         android:id="@+id/tv_make_appointment"
@@ -136,8 +135,7 @@
                         android:layout_height="wrap_content"
                         android:text="预约"
                         android:textColor="#FF3A83EF"
-                        android:textSize="13sp"
-                        />
+                        android:textSize="13sp" />
                 </LinearLayout>
 
             </android.support.constraint.ConstraintLayout>
@@ -158,8 +156,7 @@
 
                     <ImageView
                         android:layout_width="13dp"
-                        android:layout_height="22dp"
-                        />
+                        android:layout_height="22dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -209,7 +206,11 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_content"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </RelativeLayout>
 

@@ -39,7 +39,20 @@ public class ViewUtils {
             ints[1] = view.getMeasuredHeight();
         }
 
-        //目前这种测量方法不好 兼容下获取付费的
+        return ints;
+    }
+
+    /**
+     * 简单处理下有些情况下异常的问题
+     *
+     * @param view
+     * @return int[0] width int[1] height
+     */
+    public static int[] getNormalBindViewMetric(View view) {
+
+        int[] ints = getViewMetrics(view);
+
+        //目前这种测量方法不好 兼容下获取父类的
         if (ints[0] == 0 && ints[1] == 0) {
             View parent = (View) view.getParent();
             if (parent != null) {
@@ -50,11 +63,17 @@ public class ViewUtils {
     }
 
 
+    /**
+     * 这里会处理如果bindView的某个父类是CoordinatorLayout的话
+     * 将正确高度 CoordinatorLayout-AppBarLayout 返回
+     * @param bindView
+     * @return
+     */
     public static int[] getBindViewMetrics(View bindView) {
 
         CoordinatorLayout parent = findCoordinatorLayoutParent(bindView);
         if (parent != null) {
-            int[] ints = new int[2];
+            int[] ints;
 
             //寻找AppBarLayout
             AppBarLayout appBarLayout = null;
@@ -67,14 +86,13 @@ public class ViewUtils {
             }
 
             if (appBarLayout == null) {
-                return getViewMetrics(bindView);
+                return getNormalBindViewMetric(bindView);
             }
 
-            Log.i(TAG, "getBindViewMetrics()   appBarLayout.getHeight() = [" + appBarLayout.getHeight() + "]");
-
+            ints=new int[]{parent.getWidth(),parent.getHeight()-appBarLayout.getHeight()};
             return ints;
         } else {
-            return getViewMetrics(bindView);
+            return getNormalBindViewMetric(bindView);
         }
     }
 
@@ -94,9 +112,12 @@ public class ViewUtils {
     public static CoordinatorLayout findCoordinatorLayoutParent(View v) {
 
         View parent;
-        if (v == null || (parent = (View) v.getParent()) == null) {
+
+        if (v == null || v.getParent()==null|| ! (v.getParent() instanceof View)) {
             return null;
         }
+
+        parent= (View) v.getParent();
 
         if (parent instanceof CoordinatorLayout) {
             return (CoordinatorLayout) parent;
