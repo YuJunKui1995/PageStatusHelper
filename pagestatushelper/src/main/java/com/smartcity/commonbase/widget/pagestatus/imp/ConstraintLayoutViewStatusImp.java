@@ -108,9 +108,8 @@ public class ConstraintLayoutViewStatusImp extends ViewGroupViewStatusImp {
         if (layoutParams.bottomToTop != -1)
             set.connect(addView.getId(), ConstraintSet.BOTTOM, layoutParams.bottomToTop, ConstraintSet.TOP, layoutParams.bottomMargin);
 
-
-        set.constrainWidth(addView.getId(), ConstraintSet.WRAP_CONTENT);
-        set.constrainHeight(addView.getId(), ConstraintSet.WRAP_CONTENT);
+        set.constrainWidth(addView.getId(), 0);
+        set.constrainHeight(addView.getId(), 0);
 
         set.applyTo(layout);
 

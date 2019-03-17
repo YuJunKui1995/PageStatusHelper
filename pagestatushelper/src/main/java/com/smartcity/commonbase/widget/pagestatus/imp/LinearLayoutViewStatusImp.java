@@ -48,7 +48,7 @@ public class LinearLayoutViewStatusImp implements ViewStatusInterface {
                 addView.setPadding(params.paddingLeft, params.paddingTop, params.paddingRight, params.paddingBottom);
             }
 
-            parent.addView(addView, layoutParams);
+            parent.addView(addView,parent.indexOfChild(bindView), layoutParams);
 
         }
         bindView.setVisibility(View.GONE);

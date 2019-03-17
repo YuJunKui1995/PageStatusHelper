@@ -180,37 +180,37 @@ public class Builder {
 
     public View buildErrorView(boolean isRetry) {
 
-        View view = getView(errorView, errorLayout, errorImage, errorText);
+        errorView = getView(errorView, errorLayout, errorImage, errorText);
 
-        if (view instanceof TextView && !isRetry) {
-            ((TextView) view).setText(errorText2);
+        if (errorView instanceof TextView && !isRetry) {
+            ((TextView) errorView).setText(errorText2);
         }
 
-        return view;
+        return errorView;
     }
 
     public View buildNoLoginView() {
 
-        return getView(noLoginView, noLoginLayout, noLoginImage, noLoginText);
+        return noLoginView=getView(noLoginView, noLoginLayout, noLoginImage, noLoginText);
     }
 
     public View buildEmptyView() {
 
-        return getView(emptyView, emptyLayout, emptyImage, emptyText);
+        return emptyView = getView(emptyView, emptyLayout, emptyImage, emptyText);
     }
 
     public View buildNetWorkView(boolean isRetry) {
-        View view = getView(networkView, networkLayout, networkImage, networkText);
-        if (view instanceof TextView && !isRetry) {
-            ((TextView) view).setText(networkText2);
+        networkView = getView(networkView, networkLayout, networkImage, networkText);
+        if (networkView instanceof TextView && !isRetry) {
+            ((TextView) networkView).setText(networkText2);
         }
 
-        return view;
+        return networkView;
     }
 
     public View buildLoadingView() {
 
-        return getView(loadingView, loadingLayout, loadingImage, loadingText);
+        return loadingView=getView(loadingView, loadingLayout, loadingImage, loadingText);
     }
 
     private View getView(View view, int layout, int image, CharSequence text) {
