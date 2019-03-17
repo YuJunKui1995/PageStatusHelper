@@ -6,6 +6,7 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.DimenRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -251,6 +252,7 @@ public class Builder {
                 textView.setText(text);
                 textView.setTextColor(textColor);
                 textView.setTextSize(textSize);
+                textView.setGravity(Gravity.CENTER);
                 view = textView;
             }
 
