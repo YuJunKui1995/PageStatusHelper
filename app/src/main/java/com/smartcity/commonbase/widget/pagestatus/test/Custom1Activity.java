@@ -6,7 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.smartcity.commonbase.widget.pagestatus.Builder;
+import com.smartcity.commonbase.widget.pagestatus.LayoutParams;
 import com.smartcity.commonbase.widget.pagestatus.PageStatusHelper;
+import com.smartcity.commonbase.widget.pagestatus.ViewUtils;
 
 /**
  * Author: YuJunKui
@@ -33,13 +35,14 @@ public class Custom1Activity extends AppCompatActivity {
 
         contentView = findViewById(R.id.rv_content);
 
+        int dp200 = ViewUtils.dip2px(this, 200);
         statusHelper = new PageStatusHelper(this
                 , new Builder(this)
                 .setErrorImage(R.drawable.ic_loading_error)
-                .setLoadingView(new LoadingGifView(this))
                 .setEmptyImage(R.drawable.ic_loading_empty)
                 .setNetworkImage(R.drawable.ic_loading_no_net)
-                .setLoadingImage(R.drawable.ic_loading_login)
+                .setLoadingLayout(R.layout.view_custom_loading)
+                .setLayoutParams(new LayoutParams(dp200,dp200))
         );
         statusHelper.bindView(contentView);
 

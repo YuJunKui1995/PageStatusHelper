@@ -7,7 +7,9 @@ import android.support.annotation.DimenRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -39,6 +41,10 @@ public class Builder {
 
     private String bindViewBgColor = null;
 
+    private View bindView;
+
+    private LayoutParams params;
+
     /**
      * 此方法仅供PageStatusHelper类调用
      * 外部不可调用
@@ -51,8 +57,13 @@ public class Builder {
         }
     }
 
+    public void setBindView(View bindView) {
+        this.bindView = bindView;
+    }
+
     public Builder(Context context) {
         this.context = context;
+        params = new LayoutParams();
     }
 
     public Builder setErrorText(CharSequence errorText) {
@@ -179,6 +190,15 @@ public class Builder {
     }
 
 
+    public Builder setLayoutParams(LayoutParams params) {
+        this.params = params;
+        return this;
+    }
+
+    public LayoutParams getLayoutParams() {
+        return params;
+    }
+
     public View buildErrorView(boolean isRetry) {
 
         errorView = getView(errorView, errorLayout, errorImage, errorText);
@@ -192,7 +212,7 @@ public class Builder {
 
     public View buildNoLoginView() {
 
-        return noLoginView=getView(noLoginView, noLoginLayout, noLoginImage, noLoginText);
+        return noLoginView = getView(noLoginView, noLoginLayout, noLoginImage, noLoginText);
     }
 
     public View buildEmptyView() {
@@ -209,9 +229,10 @@ public class Builder {
         return networkView;
     }
 
+
     public View buildLoadingView() {
 
-        return loadingView=getView(loadingView, loadingLayout, loadingImage, loadingText);
+        return loadingView = getView(loadingView, loadingLayout, loadingImage, loadingText);
     }
 
     private View getView(View view, int layout, int image, CharSequence text) {
@@ -221,11 +242,13 @@ public class Builder {
             //优先级 layout->image->text
             if (layout != 0) {
 
-                view = View.inflate(context, layout, null);
+                view = LayoutInflater.from(context).inflate(layout, (ViewGroup) bindView.getParent(), false);
+
             } else if (image != 0) {
 
                 ImageView imageView = new ImageView(context);
                 imageView.setImageResource(image);
+                imageView.setLayoutParams(new ViewGroup.LayoutParams(params.imageWidth, params.imageHeight));
                 view = imageView;
             } else {
 
@@ -253,7 +276,9 @@ public class Builder {
                 textView.setTextColor(textColor);
                 textView.setTextSize(textSize);
                 textView.setGravity(Gravity.CENTER);
+                textView.setLayoutParams(new ViewGroup.LayoutParams(bindView.getWidth(), bindView.getHeight()));
                 view = textView;
+
             }
 
             if (bgColor != Color.TRANSPARENT) {

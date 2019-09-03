@@ -1,5 +1,8 @@
 package com.smartcity.commonbase.widget.pagestatus;
 
+import android.view.View;
+import android.view.ViewGroup;
+
 /**
  * Author: YuJunKui
  * Time:2018/1/16 15:30
@@ -19,8 +22,8 @@ public class LayoutParams {
     public int rightMargin;
     public int bottomMargin;
 
-    public int width;
-    public int height;
+    public int imageWidth = ViewGroup.LayoutParams.WRAP_CONTENT;
+    public int imageHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
 
     public boolean centerInParent;
 
@@ -31,12 +34,27 @@ public class LayoutParams {
         paddingBottom = bottom;
     }
 
-    public static final int MATCH_PARENT = -1;
+    /**
+     * 只有在图片模式下才有用
+     *
+     * @param imageWidth
+     * @param imageHeight
+     */
+    public LayoutParams(int imageWidth, int imageHeight) {
+        this();
+        this.imageWidth = imageWidth;
+        this.imageHeight = imageHeight;
+    }
 
-    public static final int WRAP_CONTENT = -2;
+    public void setWidth(int imageWidth) {
+        this.imageWidth = imageWidth;
+    }
 
-    public LayoutParams(int width, int height) {
-        this.width = width;
-        this.height = height;
+    public void setHeight(int imageHeight) {
+        this.imageHeight = imageHeight;
+    }
+
+    public LayoutParams() {
+        centerInParent=true;
     }
 }

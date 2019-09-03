@@ -28,8 +28,7 @@ public class PageStatusHelper {
     private OnNoLoginClickListener onNoLoginClickListener;
     private OnEmptyClickListener onEmptyClickListener;
 
-    private LayoutParams params;
-    public static final byte ERROR = 0, NO_LOGIN = 1, LOADING = 2, NET_WORK = 3, EMPTY = 4, CONTENT = 5;
+    public static final int ERROR = 0, NO_LOGIN = 1, LOADING = 2, NET_WORK = 3, EMPTY = 4, CONTENT = 5;
     private View lastView;
 
     private static final String TAG = "PageStatusHelper";
@@ -55,8 +54,9 @@ public class PageStatusHelper {
         controller = new ViewStatusController();
     }
 
+    @Deprecated
     public PageStatusHelper setLayoutParams(LayoutParams params) {
-        this.params = params;
+        builder.setLayoutParams(params);
         return this;
     }
 
@@ -68,10 +68,13 @@ public class PageStatusHelper {
             return this;// song 没抛运行时异常
         }
 
+        builder.setBindView(bindView);
+
         this.bindView = bindView;
         this.bindViewBgColor = ColorUtils.obtainBgColor(bindView);
 
         return this;
+
     }
 
     //检测
@@ -171,20 +174,19 @@ public class PageStatusHelper {
 
                 if ((pageStatusValue == ERROR || pageStatusValue == NET_WORK) && onErrorClickListener != null) {
 
-
                     //改变状态
                     refreshPageStatus(LOADING);
                     onErrorClickListener.onErrorClick(v);
                 } else if (pageStatusValue == NO_LOGIN && onNoLoginClickListener != null) {
                     onNoLoginClickListener.OnNoLoginClick(v);
-                }else if(pageStatusValue == EMPTY && onEmptyClickListener != null){
+                } else if (pageStatusValue == EMPTY && onEmptyClickListener != null) {
                     onEmptyClickListener.onEmptyClick(v);
                 }
 
             }
         });
 
-        controller.showViewStatus(bindView, lastView, params);
+        controller.showViewStatus(bindView, lastView, builder.getLayoutParams());
     }
 
 
@@ -207,7 +209,7 @@ public class PageStatusHelper {
         this.onErrorClickListener = onErrorClickListener;
     }
 
-    public void setOnEmptyClickListener(OnEmptyClickListener onEmptyClickListener){
+    public void setOnEmptyClickListener(OnEmptyClickListener onEmptyClickListener) {
         this.onEmptyClickListener = onEmptyClickListener;
     }
 

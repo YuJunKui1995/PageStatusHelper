@@ -2,6 +2,7 @@ package com.smartcity.commonbase.widget.pagestatus.imp;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 
 import com.smartcity.commonbase.widget.pagestatus.LayoutParams;
 import com.smartcity.commonbase.widget.pagestatus.ViewUtils;
@@ -15,38 +16,42 @@ import com.smartcity.commonbase.widget.pagestatus.ViewUtils;
 public class ViewGroupViewStatusImp implements ViewStatusInterface {
 
     @Override
-    public void addStatusView(View bindView, View addView, LayoutParams params) {
+    public void addStatusView(final View bindView, final View addView, LayoutParams params) {
 
         ViewGroup parent = (ViewGroup) bindView.getParent();
 
         if (parent.indexOfChild(addView) == -1) {
 
-            ViewGroup.MarginLayoutParams layoutParams = new ViewGroup.MarginLayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
             if (params.centerInParent == true) {
 
-                //获取addview宽高
-                int[] addViewMetrics = ViewUtils.getViewMetrics(addView);
-                int width = addViewMetrics[0];
-                int height = addViewMetrics[1];
+                addView.post(new Runnable() {
+                    @Override
+                    public void run() {
 
-                //获取bindview宽高
-                int[] bindViewMetrics = ViewUtils.getBindViewMetrics(bindView);
-                int parentWidth = bindViewMetrics[0];
-                int parentHeight = bindViewMetrics[1];
+                         int width = addView.getWidth();
+                        int height = addView.getHeight();
 
+                        //获取bindview宽高
+                        int[] bindViewMetrics = ViewUtils.getBindViewMetrics(bindView);
+                        int parentWidth = bindViewMetrics[0];
+                        int parentHeight = bindViewMetrics[1];
 
-                int left = (parentWidth - width) / 2;
-                int top = (parentHeight - height) / 2;
-                addView.setPadding(left, top, left, top);
+                        int left = (parentWidth - width) / 2;
+                        int top = (parentHeight - height) / 2;
+
+                        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) addView.getLayoutParams();
+                        layoutParams.setMargins(left, top, 0, 0);
+
+                        addView.setLayoutParams(layoutParams);
+                    }
+                });
 
             } else {
 
                 addView.setPadding(params.paddingLeft, params.paddingTop, params.paddingRight, params.paddingBottom);
             }
 
-            parent.addView(addView, layoutParams);
+            parent.addView(addView);
 
         }
         bindView.setVisibility(View.INVISIBLE);
