@@ -276,7 +276,13 @@ public class Builder {
                 textView.setTextColor(textColor);
                 textView.setTextSize(textSize);
                 textView.setGravity(Gravity.CENTER);
-                textView.setLayoutParams(new ViewGroup.LayoutParams(bindView.getWidth(), bindView.getHeight()));
+                if (bindView.getWidth() > 0 && bindView.getHeight() > 0) {
+                    textView.setLayoutParams(new ViewGroup.LayoutParams(bindView.getWidth(), bindView.getHeight()));
+                } else {
+                    textView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                    int dp10 = ViewUtils.dip2px(bindView.getContext(), 10);
+                    textView.setPadding(dp10 * 2, dp10, dp10 * 2, dp10);
+                }
                 view = textView;
 
             }
@@ -288,7 +294,8 @@ public class Builder {
 
             ((TextView) view).setText(text);
         }
-
+        //这个是必须的 因为让布局根布局的属性生效 必须使用这样的，但是刚加上如
+        view.setVisibility(View.INVISIBLE);
         return view;
     }
 

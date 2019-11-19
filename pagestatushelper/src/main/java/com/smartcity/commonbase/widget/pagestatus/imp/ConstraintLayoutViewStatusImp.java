@@ -3,6 +3,7 @@ package com.smartcity.commonbase.widget.pagestatus.imp;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.smartcity.commonbase.widget.pagestatus.LayoutParams;
 import com.smartcity.commonbase.widget.pagestatus.ViewUtils;
@@ -14,31 +15,30 @@ import com.smartcity.commonbase.widget.pagestatus.ViewUtils;
  */
 public class ConstraintLayoutViewStatusImp extends ViewGroupViewStatusImp {
 
+    boolean isHasLayoutParam = false;
+
     @Override
     public void addStatusView(View bindView, View addView, LayoutParams params) {
-//        super.addStatusView(bindView, addView, params);
-        //come soon
+        super.addStatusView(bindView, addView, params);
 
         //((ConstraintLayout) bindView.getParent()).addView(addView, bindView.getLayoutParams());
         //这个是不行的  ConstraintLayout并没有处理 addView
 
-        ConstraintLayout layout = (ConstraintLayout) bindView.getParent();
-
-        if (layout.indexOfChild(addView) != -1) {
-            //已经添加过了
-            bindView.setVisibility(View.INVISIBLE);
-            addView.setVisibility(View.VISIBLE);
-            return;
+        isHasLayoutParam = addView.getLayoutParams() != null;
+        if (!isHasLayoutParam) {
+            int dp10 = ViewUtils.dip2px(bindView.getContext(), 10);
+            addView.setPadding(dp10 * 2, dp10, dp10 * 2, dp10);
         }
 
-        int dp10 = ViewUtils.dip2px(bindView.getContext(), 10);
-        addView.setPadding(dp10 * 2, dp10, dp10 * 2, dp10);
+    }
 
 
-        addView.setId(View.generateViewId());
-        layout.addView(addView);
+    @Override
+    protected void initLayoutParams(ViewGroup.LayoutParams layoutParamsTemp) {
 
-        ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) bindView.getLayoutParams();
+        ConstraintLayout layout = (ConstraintLayout) bindView.getParent();
+
+        ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) layoutParamsTemp;
         ConstraintSet set = new ConstraintSet();
         set.clone(layout);
 
@@ -52,7 +52,7 @@ public class ConstraintLayoutViewStatusImp extends ViewGroupViewStatusImp {
         if (layoutParams.leftMargin == layoutParams.rightMargin &&
                 layoutParams.leftToLeft == -1 && layoutParams.leftToRight == -1 &&
                 layoutParams.rightToRight == -1 && layoutParams.rightToLeft == -1
-                ) {
+        ) {
             layoutParams.leftToLeft = ConstraintLayout.LayoutParams.PARENT_ID;
             layoutParams.rightToRight = ConstraintLayout.LayoutParams.PARENT_ID;
             layoutParams.leftMargin = 0;
@@ -61,7 +61,7 @@ public class ConstraintLayoutViewStatusImp extends ViewGroupViewStatusImp {
         if (layoutParams.topMargin == layoutParams.bottomMargin &&
                 layoutParams.topToTop == -1 && layoutParams.topToBottom == -1 &&
                 layoutParams.bottomToBottom == -1 && layoutParams.bottomToTop == -1
-                ) {
+        ) {
             layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
             layoutParams.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID;
             layoutParams.topMargin = 0;
@@ -108,13 +108,14 @@ public class ConstraintLayoutViewStatusImp extends ViewGroupViewStatusImp {
         if (layoutParams.bottomToTop != -1)
             set.connect(addView.getId(), ConstraintSet.BOTTOM, layoutParams.bottomToTop, ConstraintSet.TOP, layoutParams.bottomMargin);
 
-        set.constrainWidth(addView.getId(), 0);
-        set.constrainHeight(addView.getId(), 0);
+        if (isHasLayoutParam) {
+            set.constrainWidth(addView.getId(), 0);
+            set.constrainHeight(addView.getId(), 0);
+        }
 
         set.applyTo(layout);
 
         bindView.setVisibility(View.INVISIBLE);
         addView.setVisibility(View.VISIBLE);
-
     }
 }

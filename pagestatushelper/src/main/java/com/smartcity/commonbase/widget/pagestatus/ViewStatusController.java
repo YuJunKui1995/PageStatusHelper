@@ -57,7 +57,7 @@ public class ViewStatusController {
                 throw new RuntimeException("不支持直属父布局为" + parent.getClass().getSimpleName() + "使用PageStatusHelper，解决方案暂为在 binview外套一层布局");
             } else {
 //            throw new RuntimeException("不支持" + bindView.getParent().getClass().getSimpleName() + "布局使用PageStatusHelper，联系维护者");
-                viewStatusInterface = new ViewGroupViewStatusImp();
+                viewStatusInterface = new FrameLayoutViewStatusImp();
             }
         }
         viewStatusInterface.addStatusView(bindView, addView, params);

@@ -42,7 +42,7 @@ public class Custom1Activity extends AppCompatActivity {
                 .setEmptyImage(R.drawable.ic_loading_empty)
                 .setNetworkImage(R.drawable.ic_loading_no_net)
                 .setLoadingLayout(R.layout.view_custom_loading)
-                .setLayoutParams(new LayoutParams(dp200,dp200))
+//                .setLayoutParams(new LayoutParams(dp200,dp200))
         );
         statusHelper.bindView(contentView);
 

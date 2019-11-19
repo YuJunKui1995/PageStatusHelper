@@ -12,6 +12,7 @@ import com.smartcity.commonbase.widget.pagestatus.LayoutParams;
 
 public interface ViewStatusInterface {
 
+    String ADD_View_TAG="add_view_tag";
 
     void addStatusView(View bindView, View addView, LayoutParams params);
 
