@@ -25,18 +25,12 @@ import com.smartcity.commonbase.widget.pagestatus.imp.ViewStatusInterface;
 public class ViewStatusController {
 
     private ViewStatusInterface viewStatusInterface;
-    private View bindView;
-    private View addView;
 
     public void showViewStatus(View bindView, View addView, LayoutParams params) {
 
         //理论上只有有一次成立
 
-
-        if (this.bindView != bindView) {
-
-            this.bindView = bindView;
-            this.addView = addView;
+        if (viewStatusInterface==null) {
 
             ViewGroup parent = (ViewGroup) bindView.getParent();
 
@@ -67,7 +61,7 @@ public class ViewStatusController {
     public void showContent() {
 
         if (viewStatusInterface == null) return;
-        viewStatusInterface.showContentView(bindView, addView);
+        viewStatusInterface.showContentView();
 
     }
 

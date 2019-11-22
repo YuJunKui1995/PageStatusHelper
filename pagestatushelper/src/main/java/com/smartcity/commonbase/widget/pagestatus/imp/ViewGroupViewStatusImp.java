@@ -1,5 +1,6 @@
 package com.smartcity.commonbase.widget.pagestatus.imp;
 
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -15,8 +16,12 @@ import com.smartcity.commonbase.widget.pagestatus.ViewUtils;
 
 public abstract class ViewGroupViewStatusImp implements ViewStatusInterface {
 
+    private static final String TAG = "ViewGroupViewStatusImp";
+
     protected View addView;
     protected View bindView;
+
+    protected View lastAddView;
 
 
     //线性布局插入view后会对bindView的的宽高会变化，导致的问题
@@ -37,10 +42,17 @@ public abstract class ViewGroupViewStatusImp implements ViewStatusInterface {
 
             if (params.centerInParent == true) {
 
+
                 addView.post(new Runnable() {
                     @Override
                     public void run() {
 
+                        if (lastAddView != null) {
+                            lastAddView.setVisibility(View.INVISIBLE);
+                        }
+                        lastAddView = addView;
+
+                        Log.i(TAG, "call addStatusView run addView=" + addView);
                         //获取bindview宽高
                         if (bindViewWidth == -1) {
                             int[] bindViewMetrics = ViewUtils.getBindViewMetrics(bindView);
@@ -55,8 +67,7 @@ public abstract class ViewGroupViewStatusImp implements ViewStatusInterface {
                         int top = (bindViewHeight - height) / 2;
 
                         ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) addView.getLayoutParams();
-                        layoutParams.setMargins(
-                                binViewParams.leftMargin + layoutParams.leftMargin + left, layoutParams.topMargin + top, layoutParams.rightMargin, layoutParams.bottomMargin);
+                        layoutParams.setMargins(left, top, 0, 0);
 
                         initLayoutParams(layoutParams);
 
@@ -77,6 +88,10 @@ public abstract class ViewGroupViewStatusImp implements ViewStatusInterface {
             parent.addView(addView);
             hideContent(bindView);
         } else {
+            if (lastAddView != null) {
+                lastAddView.setVisibility(View.INVISIBLE);
+            }
+            lastAddView=addView;
             addView.setVisibility(View.VISIBLE);
             hideContent(bindView);
         }
@@ -100,7 +115,7 @@ public abstract class ViewGroupViewStatusImp implements ViewStatusInterface {
 
 
     @Override
-    public void showContentView(View bindView, View addView) {
+    public void showContentView() {
 
         bindView.setVisibility(View.VISIBLE);
         addView.setVisibility(View.GONE);

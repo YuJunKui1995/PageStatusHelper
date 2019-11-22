@@ -29,8 +29,7 @@ public class CoordinatorLayoutActivity extends AppCompatActivity {
         PageStatusHelper pageStatusHelper=new PageStatusHelper(this);
         pageStatusHelper.bindView(bindView);
 
-        pageStatusHelper.refreshPageStatus(PageStatusHelper.LOADING);
-
+        bindView.postDelayed(() -> pageStatusHelper.refreshPageStatus(PageStatusHelper.LOADING),200);
 
     }
 

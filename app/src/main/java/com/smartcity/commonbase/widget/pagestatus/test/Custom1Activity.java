@@ -48,6 +48,7 @@ public class Custom1Activity extends AppCompatActivity {
 
 
         statusHelper.refreshPageStatus(PageStatusHelper.LOADING);
+        statusHelper.refreshPageStatus(PageStatusHelper.ERROR);
 
     }
 

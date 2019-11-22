@@ -15,26 +15,22 @@ import com.smartcity.commonbase.widget.pagestatus.ViewUtils;
  */
 public class ConstraintLayoutViewStatusImp extends ViewGroupViewStatusImp {
 
-    boolean isHasLayoutParam = false;
 
     @Override
     public void addStatusView(View bindView, View addView, LayoutParams params) {
-        super.addStatusView(bindView, addView, params);
 
         //((ConstraintLayout) bindView.getParent()).addView(addView, bindView.getLayoutParams());
         //这个是不行的  ConstraintLayout并没有处理 addView
 
-        isHasLayoutParam = addView.getLayoutParams() != null;
-        if (!isHasLayoutParam) {
-            int dp10 = ViewUtils.dip2px(bindView.getContext(), 10);
-            addView.setPadding(dp10 * 2, dp10, dp10 * 2, dp10);
-        }
-
+        super.addStatusView(bindView, addView, params);
     }
 
 
     @Override
     protected void initLayoutParams(ViewGroup.LayoutParams layoutParamsTemp) {
+
+        ((ViewGroup.MarginLayoutParams)layoutParamsTemp).setMargins(0,0,0,0);
+        int rulesCount = 0;
 
         ConstraintLayout layout = (ConstraintLayout) bindView.getParent();
 
@@ -71,51 +67,63 @@ public class ConstraintLayoutViewStatusImp extends ViewGroupViewStatusImp {
         //left to left  start to start
         if (layoutParams.leftToLeft != -1 || layoutParams.startToStart != -1) {
             int leftToLeft = layoutParams.leftToLeft != -1 ? layoutParams.leftToLeft : layoutParams.startToStart;
-            set.connect(addView.getId(), ConstraintSet.LEFT, leftToLeft, ConstraintSet.LEFT, layoutParams.leftMargin);
+            set.connect(addView.getId(), ConstraintSet.START, leftToLeft, ConstraintSet.START, layoutParams.leftMargin);
+            rulesCount++;
         }
 
         //right to right  end to end
         if (layoutParams.rightToRight != -1 || layoutParams.endToEnd != -1) {
             int rightToRight = layoutParams.rightToRight != -1 ? layoutParams.rightToRight : layoutParams.endToEnd;
-            set.connect(addView.getId(), ConstraintSet.RIGHT, rightToRight, ConstraintSet.RIGHT, layoutParams.rightMargin);
+            set.connect(addView.getId(), ConstraintSet.END, rightToRight, ConstraintSet.END, layoutParams.rightMargin);
+            rulesCount++;
         }
 
         //top to top
-        if (layoutParams.topToTop != -1)
+        if (layoutParams.topToTop != -1) {
             set.connect(addView.getId(), ConstraintSet.TOP, layoutParams.topToTop, ConstraintSet.TOP, layoutParams.topMargin);
+            rulesCount++;
+        }
 
         //bottom to bottom
-        if (layoutParams.bottomToBottom != -1)
+        if (layoutParams.bottomToBottom != -1) {
             set.connect(addView.getId(), ConstraintSet.BOTTOM, layoutParams.bottomToBottom, ConstraintSet.BOTTOM, layoutParams.bottomMargin);
+            rulesCount++;
+        }
 
         //left to right  start to end
         if (layoutParams.leftToRight != -1 || layoutParams.startToEnd != -1) {
             int leftToRight = layoutParams.rightToRight != -1 ? layoutParams.rightToRight : layoutParams.startToEnd;
             set.connect(addView.getId(), ConstraintSet.LEFT, leftToRight, ConstraintSet.RIGHT, layoutParams.leftMargin);
+            rulesCount++;
         }
 
         //right to left  end to start
         if (layoutParams.rightToLeft != -1 && layoutParams.endToStart != -1) {
             int rightToLeft = layoutParams.rightToLeft != -1 ? layoutParams.rightToLeft : layoutParams.endToStart;
             set.connect(addView.getId(), ConstraintSet.RIGHT, rightToLeft, ConstraintSet.LEFT, layoutParams.rightMargin);
+            rulesCount++;
         }
 
         //top to bottom
-        if (layoutParams.topToBottom != -1)
+        if (layoutParams.topToBottom != -1) {
             set.connect(addView.getId(), ConstraintSet.TOP, layoutParams.topToBottom, ConstraintSet.BOTTOM, layoutParams.topMargin);
+            rulesCount++;
+        }
 
         //bottom to top
-        if (layoutParams.bottomToTop != -1)
+        if (layoutParams.bottomToTop != -1) {
             set.connect(addView.getId(), ConstraintSet.BOTTOM, layoutParams.bottomToTop, ConstraintSet.TOP, layoutParams.bottomMargin);
+            rulesCount++;
+        }
 
-        if (isHasLayoutParam) {
-            set.constrainWidth(addView.getId(), 0);
-            set.constrainHeight(addView.getId(), 0);
+        //检查约束布局的参数  理论应该是4个
+        if (rulesCount < 3) {
+            set.connect(addView.getId(), ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP, 0);
+            set.connect(addView.getId(), ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM, 0);
+            set.connect(addView.getId(), ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START, 0);
+            set.connect(addView.getId(), ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, 0);
         }
 
         set.applyTo(layout);
-
-        bindView.setVisibility(View.INVISIBLE);
-        addView.setVisibility(View.VISIBLE);
     }
 }

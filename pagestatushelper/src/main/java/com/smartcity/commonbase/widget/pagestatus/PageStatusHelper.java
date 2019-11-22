@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Build;
 import android.support.annotation.IntDef;
 import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
@@ -29,7 +30,6 @@ public class PageStatusHelper {
     private OnEmptyClickListener onEmptyClickListener;
 
     public static final int ERROR = 0, NO_LOGIN = 1, LOADING = 2, NET_WORK = 3, EMPTY = 4, CONTENT = 5;
-    private View lastView;
 
     private static final String TAG = "PageStatusHelper";
 
@@ -109,6 +109,8 @@ public class PageStatusHelper {
             return this;
         }
 
+        Log.i(TAG,"call refreshPageStatus  currentPageStatusValue="+pageStatusValue);
+
         currentPageStatusValue = pageStatusValue;
 
         if (bindView.getVisibility() == View.GONE) {
@@ -135,9 +137,6 @@ public class PageStatusHelper {
     }
 
     private void refreshStatus(@PageStatusValue final int pageStatusValue) {
-        if (lastView != null) {
-            lastView.setVisibility(View.GONE);
-        }
 
         builder.setBindViewBgColor(bindViewBgColor);
 
@@ -147,27 +146,28 @@ public class PageStatusHelper {
             return;
         }
 
+        View statusView;
         if (pageStatusValue == ERROR) {
 
-            lastView = builder.buildErrorView(onErrorClickListener != null);
+            statusView = builder.buildErrorView(onErrorClickListener != null);
         } else if (pageStatusValue == EMPTY) {
 
-            lastView = builder.buildEmptyView();
+            statusView = builder.buildEmptyView();
         } else if (pageStatusValue == LOADING) {
 
-            lastView = builder.buildLoadingView();
+            statusView = builder.buildLoadingView();
         } else if (pageStatusValue == NET_WORK) {
 
-            lastView = builder.buildNetWorkView(onErrorClickListener != null);
+            statusView = builder.buildNetWorkView(onErrorClickListener != null);
         } else if (pageStatusValue == NO_LOGIN) {
 
-            lastView = builder.buildNoLoginView();
+            statusView = builder.buildNoLoginView();
         } else {
             return;
         }
 
         //绑定事件
-        lastView.setOnClickListener(new View.OnClickListener() {
+        statusView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -186,7 +186,7 @@ public class PageStatusHelper {
             }
         });
 
-        controller.showViewStatus(bindView, lastView, builder.getLayoutParams());
+        controller.showViewStatus(bindView, statusView, builder.getLayoutParams());
     }
 
 

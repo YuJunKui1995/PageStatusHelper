@@ -16,6 +16,6 @@ public interface ViewStatusInterface {
 
     void addStatusView(View bindView, View addView, LayoutParams params);
 
-    void showContentView(View bindView, View addView);
+    void showContentView();
 
 }
