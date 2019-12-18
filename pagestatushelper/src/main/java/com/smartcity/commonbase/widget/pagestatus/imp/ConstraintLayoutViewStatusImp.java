@@ -27,14 +27,22 @@ public class ConstraintLayoutViewStatusImp extends ViewGroupViewStatusImp {
 
 
     @Override
-    protected void initLayoutParams(ViewGroup.LayoutParams layoutParamsTemp) {
+    protected void initLayoutParams(ViewGroup.LayoutParams addLayoutParams) {
 
-        ((ViewGroup.MarginLayoutParams)layoutParamsTemp).setMargins(0,0,0,0);
+        ((ViewGroup.MarginLayoutParams) addLayoutParams).setMargins(0, 0, 0, 0);
         int rulesCount = 0;
 
         ConstraintLayout layout = (ConstraintLayout) bindView.getParent();
+        //因为约束布局使用ConstraintSet新增view的时候 必须要其他view要有id
+        for (int i = 0; i < layout.getChildCount(); i++) {
+            View v=layout.getChildAt(i);
+            if (v.getId() == View.NO_ID) {
+                v.setId(View.generateViewId());
+            }
+        }
 
-        ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) layoutParamsTemp;
+        ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) bindView.getLayoutParams();
+
         ConstraintSet set = new ConstraintSet();
         set.clone(layout);
 
@@ -122,6 +130,14 @@ public class ConstraintLayoutViewStatusImp extends ViewGroupViewStatusImp {
             set.connect(addView.getId(), ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM, 0);
             set.connect(addView.getId(), ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START, 0);
             set.connect(addView.getId(), ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, 0);
+        }
+
+        if (addLayoutParams.width == ViewGroup.LayoutParams.MATCH_PARENT
+                && addLayoutParams.height == ViewGroup.LayoutParams.MATCH_PARENT
+                && rulesCount >= 4
+        ) {
+            set.constrainWidth(addView.getId(), 0);
+            set.constrainHeight(addView.getId(), 0);
         }
 
         set.applyTo(layout);

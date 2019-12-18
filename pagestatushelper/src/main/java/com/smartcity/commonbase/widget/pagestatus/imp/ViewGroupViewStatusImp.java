@@ -36,9 +36,12 @@ public abstract class ViewGroupViewStatusImp implements ViewStatusInterface {
 
         ViewGroup parent = (ViewGroup) bindView.getParent();
 
-        if (addView.getTag() == null) {
+        if (lastAddView != null) {
+            lastAddView.setVisibility(View.GONE);
+        }
+        lastAddView = addView;
 
-            final ViewGroup.MarginLayoutParams binViewParams = (ViewGroup.MarginLayoutParams) bindView.getLayoutParams();
+        if (addView.getTag() == null) {
 
             if (params.centerInParent == true) {
 
@@ -47,10 +50,17 @@ public abstract class ViewGroupViewStatusImp implements ViewStatusInterface {
                     @Override
                     public void run() {
 
-                        if (lastAddView != null) {
-                            lastAddView.setVisibility(View.INVISIBLE);
+                        //说明在一瞬间调用了两次状态 有可能前一次绘制计算位置还没完成就 调用了第二次
+                        //一般出现在没有网络的情况下，
+                        // gone后没有绘制完成的会没有宽高
+                        //如果用INVISIBLE会导致线性布局出现问题
+                        //所以在下次调用的时候直接gone，
+                        // 当第一次的状态下次再调用的时候就会当做第一次显示，再次走这里
+                        if (ViewGroupViewStatusImp.this.addView != addView) {
+                            //没有摆放成功就调用了其他的状态,需要删除view
+                            ((ViewGroup) addView.getParent()).removeView(addView);
+                            return;
                         }
-                        lastAddView = addView;
 
                         Log.i(TAG, "call addStatusView run addView=" + addView);
                         //获取bindview宽高
@@ -85,13 +95,10 @@ public abstract class ViewGroupViewStatusImp implements ViewStatusInterface {
             if (addView.getId() == View.NO_ID) {
                 addView.setId(View.generateViewId());
             }
-            parent.addView(addView);
+            if (addView.getParent() == null) parent.addView(addView);
             hideContent(bindView);
         } else {
-            if (lastAddView != null) {
-                lastAddView.setVisibility(View.INVISIBLE);
-            }
-            lastAddView=addView;
+            lastAddView = addView;
             addView.setVisibility(View.VISIBLE);
             hideContent(bindView);
         }
