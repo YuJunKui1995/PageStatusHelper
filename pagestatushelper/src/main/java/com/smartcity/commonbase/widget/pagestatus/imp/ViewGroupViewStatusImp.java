@@ -62,7 +62,6 @@ public abstract class ViewGroupViewStatusImp implements ViewStatusInterface {
                             return;
                         }
 
-                        Log.i(TAG, "call addStatusView run addView=" + addView);
                         //获取bindview宽高
                         if (bindViewWidth == -1) {
                             int[] bindViewMetrics = ViewUtils.getBindViewMetrics(bindView);

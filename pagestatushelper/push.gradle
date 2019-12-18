@@ -3,11 +3,11 @@ apply plugin: 'com.novoda.bintray-release'
 def siteUrl = 'https://github.com/YuJunKui1995/PageStatusHelper'
 
 publish{
-    repoName = 'HouShanRen'
+repoName = 'HouShanRen'
 userOrg = "yujkyujk"
 groupId = 'firemonkey'
 artifactId = 'pagestatushelper'
-publishVersion = '0.7.6'
+publishVersion = '1.0.0'
 desc = 'Simple and elegant management of page status .'
 website = siteUrl
 }
