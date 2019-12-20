@@ -29,7 +29,7 @@
 
 ### 2、版本依赖
 ```Groovy
-api 'firemonkey:pagestatushelper:0.7.6'
+api 'firemonkey:pagestatushelper:1.0.0'
 ```
 
 ### 3、使用
@@ -65,6 +65,17 @@ statusHelper = new PageStatusHelper(Context context
 2、在Fragment使用时bindView是根布局，而这个Fragment使用的地方需要show hide Fragment(常见为主页tab)
 以上两个问题都可以通过在bindView包裹一层父布局解决
 
+### 5、版本优化
+1.0.0 版本
+重构view的绘制流程用来支持对根布局的属性支持
+
+约束布局使用不在需要每个view都设置id
+
+约束布局中属性不全的优化支持，约束布局自定义view或layout的优化支持
+
+相对布局的完成支持
+
+瞬间多次调用(断网状态)的绘制优化
 
 ## License MIT
 
