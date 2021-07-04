@@ -7,7 +7,6 @@ import android.view.View;
 
 import com.smartcity.commonbase.widget.pagestatus.Builder;
 import com.smartcity.commonbase.widget.pagestatus.PageStatusHelper;
-import com.smartcity.commonbase.widget.pagestatus.ViewUtils;
 
 /**
  * Author: YuJunKui
@@ -46,6 +45,7 @@ public class Custom1Activity extends AppCompatActivity {
 
         statusHelper.refreshPageStatus(PageStatusHelper.LOADING);
         statusHelper.refreshPageStatus(PageStatusHelper.ERROR);
+        statusHelper.refreshPageStatus(PageStatusHelper.EMPTY);
 
     }
 
