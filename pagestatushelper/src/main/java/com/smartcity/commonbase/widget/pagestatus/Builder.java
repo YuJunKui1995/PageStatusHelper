@@ -195,6 +195,10 @@ public class Builder {
         return this;
     }
 
+    public PageStatusHelper build(){
+        return new PageStatusHelper(context,this);
+    }
+
     public LayoutParams getLayoutParams() {
         return params;
     }
