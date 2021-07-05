@@ -4,7 +4,7 @@ buildscript {
     
     repositories {
         google()
-        maven { url "http://192.168.14.152:8081/artifactory/release_lib/" }
+        maven{ url 'https://maven.aliyun.com/nexus/content/groups/public/'}
         jcenter()
     }
     dependencies {
@@ -19,7 +19,7 @@ buildscript {
 allprojects {
     repositories {
         google()
-        maven { url "http://192.168.14.152:8081/artifactory/release_lib/" }
+        maven{ url 'https://maven.aliyun.com/nexus/content/groups/public/'}
         jcenter()
     }
     tasks.withType(Javadoc) {

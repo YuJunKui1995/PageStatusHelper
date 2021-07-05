@@ -46,6 +46,8 @@ public class SimpleActivity extends AppCompatActivity {
 
 
         statusHelper.refreshPageStatus(PageStatusHelper.LOADING);
+        //模拟接口速度很快，LoadingView还没有绘制完成就调用了Content的情况
+        statusHelper.refreshPageStatus(PageStatusHelper.CONTENT);
 
     }
 

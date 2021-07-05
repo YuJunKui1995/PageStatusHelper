@@ -1,9 +1,7 @@
 package com.smartcity.commonbase.widget.pagestatus.imp;
 
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 
 import com.smartcity.commonbase.widget.pagestatus.LayoutParams;
 import com.smartcity.commonbase.widget.pagestatus.ViewUtils;
@@ -28,6 +26,8 @@ public abstract class ViewGroupViewStatusImp implements ViewStatusInterface {
     //比如当前在加载中，在线性布局下  ？？？？
     private int bindViewWidth = -1, bindViewHeight = -1;
 
+    private Runnable mRunnable = null;
+
     @Override
     public void addStatusView(final View bindView, final View addView, LayoutParams params) {
 
@@ -43,13 +43,10 @@ public abstract class ViewGroupViewStatusImp implements ViewStatusInterface {
 
         if (addView.getTag() == null) {
 
-            if (params.centerInParent == true) {
-
-
-                addView.post(new Runnable() {
+            if (params.centerInParent) {
+                mRunnable = new Runnable() {
                     @Override
                     public void run() {
-
                         //说明在一瞬间调用了两次状态 有可能前一次绘制计算位置还没完成就 调用了第二次
                         //一般出现在没有网络的情况下，
                         // gone后没有绘制完成的会没有宽高
@@ -57,8 +54,7 @@ public abstract class ViewGroupViewStatusImp implements ViewStatusInterface {
                         //所以在下次调用的时候直接gone，
                         // 当第一次的状态下次再调用的时候就会当做第一次显示，再次走这里
                         if (ViewGroupViewStatusImp.this.addView != addView) {
-                            //没有摆放成功就调用了其他的状态,需要删除view
-                            ((ViewGroup) addView.getParent()).removeView(addView);
+                            //没有摆放成功就调用了其他的状态直接返回
                             return;
                         }
 
@@ -84,7 +80,8 @@ public abstract class ViewGroupViewStatusImp implements ViewStatusInterface {
                         addView.setLayoutParams(addView.getLayoutParams());
                         addView.setVisibility(View.VISIBLE);
                     }
-                });
+                };
+                addView.post(mRunnable);
 
             } else {
 
@@ -124,6 +121,8 @@ public abstract class ViewGroupViewStatusImp implements ViewStatusInterface {
     public void showContentView() {
 
         bindView.setVisibility(View.VISIBLE);
+        //有可能addView还没有绘制完成就调用了showContent
+        addView.removeCallbacks(mRunnable);
         addView.setVisibility(View.GONE);
     }
 }

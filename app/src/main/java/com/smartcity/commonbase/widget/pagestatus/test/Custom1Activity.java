@@ -7,7 +7,6 @@ import android.view.View;
 
 import com.smartcity.commonbase.widget.pagestatus.Builder;
 import com.smartcity.commonbase.widget.pagestatus.PageStatusHelper;
-import com.smartcity.commonbase.widget.pagestatus.ViewUtils;
 
 /**
  * Author: YuJunKui
@@ -34,18 +33,18 @@ public class Custom1Activity extends AppCompatActivity {
 
         contentView = findViewById(R.id.rv_content);
 
-        statusHelper = new PageStatusHelper(this
-                , new Builder(this)
+        statusHelper = new Builder(this)
                 .setErrorLayout(R.layout.view_custom_error)
                 .setEmptyImage(R.drawable.ic_loading_empty)
                 .setNetworkImage(R.drawable.ic_loading_no_net)
                 .setLoadingLayout(R.layout.view_custom_loading)
-        );
+                .build();
         statusHelper.bindView(contentView);
 
 
         statusHelper.refreshPageStatus(PageStatusHelper.LOADING);
         statusHelper.refreshPageStatus(PageStatusHelper.ERROR);
+        statusHelper.refreshPageStatus(PageStatusHelper.EMPTY);
 
     }
 

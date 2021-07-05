@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -213,4 +212,7 @@ public class PageStatusHelper {
         this.onEmptyClickListener = onEmptyClickListener;
     }
 
+    public int getCurrentPageStatusValue() {
+        return currentPageStatusValue;
+    }
 }
