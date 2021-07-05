@@ -29,7 +29,17 @@
 
 ### 2、版本依赖
 ```Groovy
-api 'firemonkey:pagestatushelper:1.0.0'
+//添加jitpack仓库
+allprojects {
+  repositories {
+	  ...
+    maven { url 'https://jitpack.io' }
+  }
+}
+//添加库
+dependencies {
+  implementation 'com.github.YuJunKui1995:PageStatusHelper:v1.1.0'
+}
 ```
 
 ### 3、使用
