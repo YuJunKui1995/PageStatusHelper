@@ -32,7 +32,7 @@
 //添加jitpack仓库
 allprojects {
   repositories {
-	  ...
+    ...
     maven { url 'https://jitpack.io' }
   }
 }
